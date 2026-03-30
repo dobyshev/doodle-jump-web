@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Doodle Jump | Glass Style</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Верхняя панель -->
+      <div class="glass-top">
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-icon">🏆</span>
+            <span class="stat-label">SCORE</span>
+            <span class="stat-value" id="scoreValue">0</span>
+          </div>
+          <div class="stat" id="comboBox" style="display: none">
+            <span class="stat-icon">⚡</span>
+            <span class="stat-label">COMBO</span>
+            <span class="stat-value" id="comboValue">x1</span>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">💰</span>
+            <span class="stat-label">BALANCE</span>
+            <span class="stat-value" id="balanceValue">100</span>
+          </div>
+          <button class="info-btn" id="infoBtn">ⓘ</button>
+        </div>
+      </div>
+
+      <!-- Игра -->
+      <div class="game-wrapper">
+        <canvas id="gameCanvas"></canvas>
+        <button class="fullscreen" id="fullscreenBtn">⤢</button>
+      </div>
+
+      <!-- Переключатель режимов -->
+      <div class="mode-bar">
+        <button class="mode active" data-mode="practice">🎮 TRAINING</button>
+        <button class="mode" data-mode="tournament">🏆 TOURNAMENT</button>
+      </div>
+
+      <!-- Турнирная панель -->
+      <div id="tournamentPanel" class="tournament-panel">
+        <div class="tournament-header">
+          <span>🏆 REAL MONEY TOURNAMENT</span>
+          <span class="fee">⚡ 10% FEE</span>
+        </div>
+        <div class="tournament-create">
+          <input
+            type="number"
+            id="betAmount"
+            placeholder="Amount"
+            value="100"
+            min="10"
+            step="10"
+          />
+          <select id="groupSize">
+            <option value="2">👥 2 players</option>
+            <option value="3">👥 3 players</option>
+            <option value="4">👥 4 players</option>
+            <option value="5">👥 5 players</option>
+            <option value="6">👥 6 players</option>
+            <option value="8">👥 8 players</option>
+            <option value="10">👥 10 players</option>
+          </select>
+          <button id="createTournamentBtn" class="btn-create">CREATE</button>
+        </div>
+        <div class="section-title">🔥 ACTIVE TOURNAMENTS</div>
+        <div id="tournamentsContainer" class="tournaments-list">
+          <div class="empty">✨ No active tournaments</div>
+        </div>
+        <div class="section-title">👥 MY TOURNAMENTS</div>
+        <div id="myTournamentsContainer" class="tournaments-list">
+          <div class="empty">📭 You are not participating</div>
+        </div>
+        <div class="section-title">📜 HISTORY</div>
+        <div id="historyContainer" class="history-list">
+          <div class="empty">📭 No history yet</div>
+        </div>
+      </div>
+
+      <button id="restartButton" class="restart">⟳ NEW GAME</button>
+
+      <!-- Нижняя навигация -->
+      <div class="bottom-nav">
+        <button class="nav active" data-nav="game">🎮 GAME</button>
+        <button class="nav" data-nav="tournament">🏆 TOURNAMENT</button>
+        <button class="nav" data-nav="profile">👤 PROFILE</button>
+        <button class="nav" data-nav="season">📅 SEASON</button>
+      </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="infoModal" class="modal">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h2>🎮 HOW TO PLAY</h2>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="info-block">
+            <h3>🎯 CONTROLS</h3>
+            <p>
+              👆 Slide your finger across the screen — the character follows you
+            </p>
+          </div>
+          <div class="info-block">
+            <h3>🏆 TWO MODES</h3>
+            <p><strong>🎮 TRAINING</strong> — Free play</p>
+            <p><strong>🏆 TOURNAMENT</strong> — Real money bets</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
